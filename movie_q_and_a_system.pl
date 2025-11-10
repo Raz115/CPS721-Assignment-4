@@ -37,7 +37,49 @@ currentYear(2025).
 %%%%% DO NOT INCLUDE ANY KB atomic statements in this section. 
 %%%%% Those should appear in movie_kb.pl
 
+movie(Name) :- releaseInfo(Name, _, _).
+movie(Name) :- directedBy(Name, _).
+movie(Name) :- actedIn(_, Name, _).
+movie(Name) :- movieGenre(Name, _).
 
+actor(X) :- actedIn(X, _, _).
+director(X) :- directedBy(_, X).
+character(X) :- actedIn(_, _, X).
+genre(X) :- movieGenre(_, X).
+releaseYear(X) :- releaseInfo(_, X, _).
+
+movieLength(X) :- releaseInfo(_, _, X).
+movieLength(X, L) :- releaseInfo(X, _, L).
+
+newDirector(Name) :-
+   currentYear(CurrYear), 
+   directedBy(Movie, Name),        
+   releaseInfo(Movie, CurrYear, _),      
+   not((directedBy(OldMovie, Name),       
+        releaseInfo(OldMovie, OldYear, _),
+        OldYear < CurrYear)).
+
+newActor(Name) :-
+   currentYear(CurrYear),
+   actedIn(Name, Movie, _),
+   releaseInfo(Movie, CurrYear, _),
+   not(( actedIn(Name, OldMovie, _),
+         releaseInfo(OldMovie, OldYear, _),
+         OldYear < CurrYear)).
+
+genreDirector(Name, Genre) :-
+   directedBy(Movie1, Name),
+   directedBy(Movie2, Name),
+   Movie1 = not(Movie2),
+   movieGenre(Movie1, Genre),
+   movieGenre(Movie2, Genre).
+
+genreActor(Name, Genre) :-
+   actedIn(Name, Movie1, _),
+   actedIn(Name, Movie2, _),
+   Movie1 = not(Movie2),
+   movieGenre(Movie1, Genre),
+   movieGenre(Movie2, Genre).
 
 %%%%% SECTION: parser_import
 %%%%% This section imports the parser. By default, it imports the 
