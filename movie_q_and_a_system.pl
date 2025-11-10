@@ -81,6 +81,85 @@ genreActor(Name, Genre) :-
    movieGenre(Movie1, Genre),
    movieGenre(Movie2, Genre).
 
+#lexicon
+article(a).
+article(an).
+article(the).
+article(any).
+
+common_noun(movie, X) :- movie(X).
+common_noun(film, X)  :- movie(X).
+common_noun(actor, X) :- actor(X).
+common_noun(director, X) :- director(X).
+common_noun(character, X) :- character(X).
+common_noun(length, X) :- movieLength(X).
+common_noun(running_time, X) :- movieLength(X).
+common_noun(genre, X) :- genre(X).
+common_noun(release_year, X) :- releaseYear(X).
+
+
+adjective(three_hour, X) :- 
+   movie(X), 
+   movieLength(X, L), 
+   L >= 180.
+adjective(short, X) :- 
+   movie(X), 
+   movieLength(X, L), 
+   L < 60.
+
+
+adjective(new, X) :- 
+   movie(X), 
+   releaseInfo(X, Year, _), 
+   currentYear(Year).
+adjective(new, X) :-
+   actor(X),
+   newActor(X).
+adjective(new, X) :- 
+   director(X), 
+   newDirector(X).
+
+adjective(Genre, X) :- 
+   movie(X), 
+   movieGenre(X, Genre).
+adjective(Genre, X) :- 
+   actor(X), 
+   genreActor(X, Genre).
+adjective(Genre, X) :- 
+   director(X), 
+   genreDirector(X, Genre).
+
+adjective(Name, X) :- 
+   movie(X), 
+   directedBy(X, Name).
+adjective(Name, X) :- 
+   movie(X), 
+   actedIn(Name, X, _).
+
+proper_noun(X) :- movie(X).
+proper_noun(X) :- actor(X).
+proper_noun(X) :- director(X).
+proper_noun(X) :- character(X).
+proper_noun(X) :- number(X).
+
+preposition(by, X, Y) :- directedBy(X, Y).
+preposition(with, X, Y) :- actedIn(Y, X, _).
+preposition(with, X, Y) :- actedIn(_, X, Y).
+preposition(in, X, Y) :- actedIn(X, Y, _).
+preposition(in, X, Y) :- actedIn(_, Y, X).
+preposition(from, X, Y) :- releaseInfo(X, Y, _).
+preposition(released_in, X, Y) :- releaseInfo(X, Y, _).
+preposition(played_by, X, Y) :- actedIn(Y, _, X).
+
+preposition(of, length, Y) :-
+   movie(Y).
+
+preposition(of, running_time, Y) :-
+   movie(Y).
+
+preposition(of, release_year, Y) :-
+   movie(Y).
+
 %%%%% SECTION: parser_import
 %%%%% This section imports the parser. By default, it imports the 
 %%%%% original parser. To test your edited parser, comment out the first
