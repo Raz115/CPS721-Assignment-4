@@ -81,7 +81,7 @@ genreActor(Name, Genre) :-
     movieGenre(Movie1, Genre),
     movieGenre(Movie2, Genre).
 
-#lexicon
+% lexicon
 article(a).
 article(an).
 article(the).
