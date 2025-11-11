@@ -170,8 +170,8 @@ preposition(of, G, M) :- movie(M), movieGenre(M, G).
 %%%%% import the original parser or q5_parser depended on which part of
 %%%%% the assignment is being graded.
 
-:- [original_parser].
-%:- [q5_parser]
+%:- [original_parser].
+:- [q5_parser].
 
 
 
