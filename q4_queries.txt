@@ -13,46 +13,119 @@
 
 %%%%%% QUERY 1
 
+% Is there any movie of the scifi genre?
+what([a, scifi, film], M).
 
 
 %%%%%% QUERY 2
 
+% Is there any movie where clint_eastwood either acted or directed in?
+what([a, clint_eastwood, film], M).
 
 
 %%%%%% QUERY 3
 
+% Are there any 3 hour (>= 180 min) horror movies in the kb?
+what([a, three_hour, horror, film], M).
 
 
 %%%%%% QUERY 4
 
+% Did anthony_russo direct a scifi movie?
+% If so, what genres does that movie belong to?
+what([the, genre, of, a, scifi, film, by, anthony_russo], G).
 
 
 %%%%%% QUERY 5
 
+% Trying out wrong-sounding but syntactically correct sentences.
+% Quite complex: length of, horror adjective, from 2013; all mixed up into one sentence.
+
+% Find a horror movie from 2013 and tell me its run time.
+what([a, length, of, the, horror, movie, from, 2013], L).
 
 
 %%%%%% QUERY 6
 
+% Trying out repeated information in different syntactic forms, and overall silly, elongated sentences.
+
+% Find the character that Jackie Chan played in the brett_ratner movie from 1998.
+what([the, character, in, the, brett_ratner, movie, by, brett_ratner, from, 1998, played_by, jackie_chan], C).
 
 
 %%%%%% QUERY 7
 
+% Check the blatantly false case in 'of' preposition.
+what([the, actor, of, a, horror, movie], A).
 
 
 %%%%%% QUERY 8
 
+% Can I find an actor that is in the same movie as keanu_reeves?
+what([an, actor, in, the, movie, with, keanu_reeves], A).
 
 
 %%%%%% QUERY 9
 
+% Trying out 'any' and 'new'.
+
+% Find me a movie joaquim_dos_santos released this year.
+what([any, new, movie, by, joaquim_dos_santos], M).
 
 
 %%%%%% QUERY 10
 
-
+% Trying out 'short' adjective.
+what([any, short, denzel_washington, movie], M).
 
 
 %%%%%% INTERACTION LOG
 
+?- what([a, scifi, film], M).
+M = jurassic_park
+Yes (0.00s cpu, solution 1, maybe more)
+...
+M = avengers_endgame
+Yes (0.00s cpu, solution 7, maybe more)
+...
 
+?- what([a, clint_eastwood, film], M).
+No (0.00s cpu)
 
+?- what([a, three_hour, horror, film], M).
+No (0.00s cpu)
+
+?- what([the, genre, of, a, scifi, film, by, anthony_russo], G).
+G = action
+Yes (0.00s cpu, solution 1, maybe more)
+...
+
+?- what([a, length, of, the, horror, movie, from, 2013], L).
+L = 112
+Yes (0.00s cpu, solution 1, maybe more)
+...
+
+?- what([the, character, in, the, brett_ratner, movie, by, brett_ratner, from, 1998, played_by, jackie_chan], C).
+C = inspector_lee
+Yes (0.00s cpu, solution 1, maybe more)
+...
+
+?- what([the, actor, of, a, horror, movie], A).
+No (0.00s cpu)
+
+?- what([an, actor, in, the, movie, with, keanu_reeves], A).
+A = keanu_reeves
+Yes (0.00s cpu, solution 1, maybe more)
+...
+A = michael_nyqvist
+Yes (0.00s cpu, solution 7, maybe more)
+...
+No (0.00s cpu)
+
+?- what([any, new, movie, by, joaquim_dos_santos], M).
+M = minecraft_the_movie
+Yes (0.00s cpu, solution 1, maybe more)
+...
+
+?- what([any, short, denzel_washington, movie], M).
+No (0.00s cpu)

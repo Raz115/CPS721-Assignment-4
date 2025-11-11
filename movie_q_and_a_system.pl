@@ -49,7 +49,6 @@ genre(G) :- movieGenre(M, G).
 releaseYear(Y) :- releaseInfo(M, Y, L).
 
 movieLength(M) :- releaseInfo(M, Y, L).
-movieLength(M, L) :- releaseInfo(M, Y, L).
 
 newDirector(Name) :-
     currentYear(Y),
@@ -93,19 +92,19 @@ common_noun(film, X) :- movie(X).
 common_noun(actor, X) :- actor(X).
 common_noun(director, X) :- director(X).
 common_noun(character, X) :- character(X).
-common_noun(length, X) :- movieLength(_, X).
-common_noun(running_time, X) :- movieLength(_, X).
-common_noun(genre, X) :- movieGenre(_, X).
-common_noun(release_year, X) :- releaseInfo(_, X, _).
+common_noun(length, L) :- releaseInfo(_, _, L).
+common_noun(running_time, L) :- releaseInfo(_, _, L).
+common_noun(genre, G) :- movieGenre(_, G).
+common_noun(release_year, Y) :- releaseInfo(_, Y, _).
 
 adjective(three_hour, M) :-
     movie(M),
-    movieLength(M, L),
+    releaseInfo(M, _, L),
     L >= 180.
 
 adjective(short, M) :-
     movie(M),
-    movieLength(M, L),
+    releaseInfo(M, _, L),
     L < 60.
 
 adjective(new, M) :-
@@ -123,14 +122,12 @@ adjective(Genre, M) :-
     movie(M),
     movieGenre(M, Genre).
 
-adjective(Genre, X) :-
+adjective(Genre, Name) :-
     actor(Name),
-    genreActor(N, Genre),
-    X = N.
-adjective(Genre, X) :-
+    genreActor(Name, Genre).
+adjective(Genre, Name) :-
     director(Name),
-    genreDirector(Name, Genre),
-    X = Name.
+    genreDirector(Name, Genre).
 
 adjective(Name, X) :-
     movie(X),
@@ -160,10 +157,9 @@ preposition(released_in, M, Y) :- releaseInfo(M, Y, _).
 preposition(played_by, C, A) :- actedIn(A, _, C).
 
 
-preposition(of, release_year, M) :- movie(M).
-preposition(of, length, M) :- movie(M).
-preposition(of, running_time, M) :- movie(M).
-preposition(of, genre, M) :- movie(M).
+preposition(of, Y, M) :- movie(M), releaseInfo(M, Y, _).
+preposition(of, L, M) :- movie(M), releaseInfo(M, _, L).
+preposition(of, G, M) :- movie(M), movieGenre(M, G).
 
 
 %%%%% SECTION: parser_import
