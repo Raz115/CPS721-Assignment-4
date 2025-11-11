@@ -68,18 +68,18 @@ newActor(Name) :-
          OldYear < CurrYear)).
 
 genreDirector(Name, Genre) :-
-   directedBy(Movie1, Name),
-   directedBy(Movie2, Name),
-   Movie1 = not(Movie2),
-   movieGenre(Movie1, Genre),
-   movieGenre(Movie2, Genre).
+    directedBy(Movie1, Name),
+    directedBy(Movie2, Name),
+    not(Movie1 = Movie2),
+    movieGenre(Movie1, Genre),
+    movieGenre(Movie2, Genre).
 
 genreActor(Name, Genre) :-
-   actedIn(Name, Movie1, _),
-   actedIn(Name, Movie2, _),
-   Movie1 = not(Movie2),
-   movieGenre(Movie1, Genre),
-   movieGenre(Movie2, Genre).
+    actedIn(Name, Movie1, _),
+    actedIn(Name, Movie2, _),
+    not(Movie1 = Movie2),
+    movieGenre(Movie1, Genre),
+    movieGenre(Movie2, Genre).
 
 #lexicon
 article(a).
