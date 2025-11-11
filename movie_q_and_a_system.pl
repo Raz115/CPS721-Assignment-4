@@ -37,104 +37,107 @@ currentYear(2025).
 %%%%% DO NOT INCLUDE ANY KB atomic statements in this section. 
 %%%%% Those should appear in movie_kb.pl
 
-movie(Name) :- releaseInfo(Name, _, _).
-movie(Name) :- directedBy(Name, _).
-movie(Name) :- actedIn(_, Name, _).
-movie(Name) :- movieGenre(Name, _).
+movie(M) :- releaseInfo(M, _, _).
+movie(M) :- directedBy(M, _).
+movie(M) :- actedIn(_, M, _).
+movie(M) :- movieGenre(M, _).
 
-actor(X) :- actedIn(X, _, _).
-director(X) :- directedBy(_, X).
-character(X) :- actedIn(_, _, X).
-genre(X) :- movieGenre(_, X).
-releaseYear(X) :- releaseInfo(_, X, _).
+actor(A) :- actedIn(A, M, C).
+director(D) :- directedBy(M, D).
+character(C) :- actedIn(A, M, C).
+genre(G) :- movieGenre(M, G).
+releaseYear(Y) :- releaseInfo(M, Y, L).
 
-movieLength(X) :- releaseInfo(_, _, X).
-movieLength(X, L) :- releaseInfo(X, _, L).
+movieLength(M) :- releaseInfo(M, Y, L).
+movieLength(M, L) :- releaseInfo(M, Y, L).
 
 newDirector(Name) :-
-   currentYear(CurrYear), 
-   directedBy(Movie, Name),        
-   releaseInfo(Movie, CurrYear, _),      
-   not((directedBy(OldMovie, Name),       
-        releaseInfo(OldMovie, OldYear, _),
-        OldYear < CurrYear)).
+    currentYear(Y),
+    directedBy(M, Name),
+    releaseInfo(M, Y, _),
+    not((directedBy(M1, Name),
+         releaseInfo(M1, Y1, _),
+         Y1 < Y)).
 
 newActor(Name) :-
-   currentYear(CurrYear),
-   actedIn(Name, Movie, _),
-   releaseInfo(Movie, CurrYear, _),
-   not(( actedIn(Name, OldMovie, _),
-         releaseInfo(OldMovie, OldYear, _),
-         OldYear < CurrYear)).
+    currentYear(Y),
+    actedIn(Name, M, _),
+    releaseInfo(M, Y, _),
+    not((actedIn(Name, M1, _),
+         releaseInfo(M1, Y1, _),
+         Y1 < Y)).
 
 genreDirector(Name, Genre) :-
-    directedBy(Movie1, Name),
-    directedBy(Movie2, Name),
-    not(Movie1 = Movie2),
-    movieGenre(Movie1, Genre),
-    movieGenre(Movie2, Genre).
+    directedBy(M1, Name),
+    directedBy(M2, Name),
+    not(M1 = M2),
+    movieGenre(M1, Genre),
+    movieGenre(M2, Genre).
 
 genreActor(Name, Genre) :-
-    actedIn(Name, Movie1, _),
-    actedIn(Name, Movie2, _),
-    not(Movie1 = Movie2),
-    movieGenre(Movie1, Genre),
-    movieGenre(Movie2, Genre).
+    actedIn(Name, M1, _),
+    actedIn(Name, M2, _),
+    not(M1 = M2),
+    movieGenre(M1, Genre),
+    movieGenre(M2, Genre).
 
-% lexicon
+% Task 3
+
 article(a).
 article(an).
 article(the).
 article(any).
 
-common_noun(movie, X) :- movie(X).
-common_noun(film, X)  :- movie(X).
+common_noun(movie, X) :- movie(X).   % this is giving actor
+common_noun(film, X) :- movie(X).    % this is giving actor
 common_noun(actor, X) :- actor(X).
 common_noun(director, X) :- director(X).
 common_noun(character, X) :- character(X).
-common_noun(length, X) :- movieLength(X).
-common_noun(running_time, X) :- movieLength(X).
-common_noun(genre, X) :- genre(X).
-common_noun(release_year, X) :- releaseYear(X).
+common_noun(length, X) :- movieLength(_, X).
+common_noun(running_time, X) :- movieLength(_, X).
+common_noun(genre, X) :- movieGenre(_, X).
+common_noun(release_year, X) :- releaseInfo(_, X, _).
 
+adjective(three_hour, M) :-
+    movie(M),
+    movieLength(M, L),
+    L >= 180.
 
-adjective(three_hour, X) :- 
-   movie(X), 
-   movieLength(X, L), 
-   L >= 180.
-adjective(short, X) :- 
-   movie(X), 
-   movieLength(X, L), 
-   L < 60.
+adjective(short, M) :-
+    movie(M),
+    movieLength(M, L),
+    L < 60.
 
+adjective(new, M) :-
+    movie(M),
+    releaseInfo(M, Y, _),
+    currentYear(Y).
+adjective(new, A) :-
+    actor(A),
+    newActor(A).
+adjective(new, D) :-
+    director(D),
+    newDirector(D).
 
-adjective(new, X) :- 
-   movie(X), 
-   releaseInfo(X, Year, _), 
-   currentYear(Year).
-adjective(new, X) :-
-   actor(X),
-   newActor(X).
-adjective(new, X) :- 
-   director(X), 
-   newDirector(X).
+adjective(Genre, M) :-
+    movie(M),
+    movieGenre(M, Genre).
 
-adjective(Genre, X) :- 
-   movie(X), 
-   movieGenre(X, Genre).
-adjective(Genre, X) :- 
-   actor(X), 
-   genreActor(X, Genre).
-adjective(Genre, X) :- 
-   director(X), 
-   genreDirector(X, Genre).
+adjective(Genre, X) :-
+    actor(Name),
+    genreActor(N, Genre),
+    X = N.
+adjective(Genre, X) :-
+    director(Name),
+    genreDirector(Name, Genre),
+    X = Name.
 
-adjective(Name, X) :- 
-   movie(X), 
-   directedBy(X, Name).
-adjective(Name, X) :- 
-   movie(X), 
-   actedIn(Name, X, _).
+adjective(Name, X) :-
+    movie(X),
+    directedBy(X, Name).
+adjective(Name, X) :-
+    movie(X),
+    actedIn(Name, X, _).
 
 proper_noun(X) :- movie(X).
 proper_noun(X) :- actor(X).
@@ -142,23 +145,26 @@ proper_noun(X) :- director(X).
 proper_noun(X) :- character(X).
 proper_noun(X) :- number(X).
 
-preposition(by, X, Y) :- directedBy(X, Y).
-preposition(with, X, Y) :- actedIn(Y, X, _).
-preposition(with, X, Y) :- actedIn(_, X, Y).
-preposition(in, X, Y) :- actedIn(X, Y, _).
-preposition(in, X, Y) :- actedIn(_, Y, X).
-preposition(from, X, Y) :- releaseInfo(X, Y, _).
-preposition(released_in, X, Y) :- releaseInfo(X, Y, _).
-preposition(played_by, X, Y) :- actedIn(Y, _, X).
+preposition(by, M, D) :- directedBy(M, D).
 
-preposition(of, length, Y) :-
-   movie(Y).
+preposition(with, M, A) :- actedIn(A, M, _).
+preposition(with, M, C) :- actedIn(_, M, C).
 
-preposition(of, running_time, Y) :-
-   movie(Y).
+preposition(in, A, M) :- actedIn(A, M, _).
+preposition(in, C, M) :- actedIn(_, M, C).
 
-preposition(of, release_year, Y) :-
-   movie(Y).
+preposition(from, M, Y) :- releaseInfo(M, Y, _).
+
+preposition(released_in, M, Y) :- releaseInfo(M, Y, _).
+
+preposition(played_by, C, A) :- actedIn(A, _, C).
+
+
+preposition(of, release_year, M) :- movie(M).
+preposition(of, length, M) :- movie(M).
+preposition(of, running_time, M) :- movie(M).
+preposition(of, genre, M) :- movie(M).
+
 
 %%%%% SECTION: parser_import
 %%%%% This section imports the parser. By default, it imports the 

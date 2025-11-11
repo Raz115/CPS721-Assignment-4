@@ -8,93 +8,70 @@
 
 % Put your movie KB in the section below
 
-% release info 
-releaseInfo('John Wick', 2014, 101).
-releaseInfo('Jurassic Park', 1993, 127).
-releaseInfo('The Godfather', 1972, 175).
-releaseInfo('The Conjuring', 2013, 112).
-releaseInfo('The Nun', 2018, 96).
-releaseInfo('Jumanji', 1995, 104).
-releaseInfo('Avengers: Endgame', 2019, 181).
-releaseInfo('The Exorcist', 1973, 122).
-releaseInfo('Rush Hour', 1998, 98).
-releaseInfo('Minecraft: The Movie', 2025, 105).
+releaseInfo(john_wick, 2014, 101).
+releaseInfo(jurassic_park, 1993, 127).
+releaseInfo(the_godfather, 1972, 175).
+releaseInfo(the_conjuring, 2013, 112).
+releaseInfo(the_nun, 2018, 96).
+releaseInfo(jumanji, 1995, 104).
+releaseInfo(avengers_endgame, 2019, 181).
+releaseInfo(the_exorcist, 1973, 122).
+releaseInfo(rush_hour, 1998, 98).
+releaseInfo(minecraft_the_movie, 2025, 105).
 
-% directors
-directedBy('John Wick', 'Chad Stahelski').
-directedBy('Jurassic Park', 'Steven Spielberg').
-directedBy('The Godfather', 'Francis Ford Coppola').
-directedBy('The Conjuring', 'James Wan').
-directedBy('The Nun', 'Corin Hardy').
-directedBy('Jumanji', 'Joe Johnston').
-directedBy('Avengers: Endgame', 'Anthony Russo').
-directedBy('Avengers: Endgame', 'Joe Russo').
-directedBy('The Exorcist', 'William Friedkin').
-directedBy('Rush Hour', 'Brett Ratner').
-directedBy('Minecraft: The Movie', 'Joaquim Dos Santos').
+directedBy(john_wick, chad_stahelski).
+directedBy(jurassic_park, steven_spielberg).
+directedBy(the_godfather, francis_ford_coppola).
+directedBy(the_conjuring, james_wan).
+directedBy(the_nun, corin_hardy).
+directedBy(jumanji, joe_johnston).
+directedBy(avengers_endgame, anthony_russo).
+directedBy(avengers_endgame, joe_russo).
+directedBy(the_exorcist, william_friedkin).
+directedBy(rush_hour, brett_ratner).
+directedBy(minecraft_the_movie, joaquim_dos_santos).
 
-% Actors and Characters
+actedIn(keanu_reeves, john_wick, john_wick).
+actedIn(michael_nyqvist, john_wick, viggo_tarasov).
+actedIn(sam_neill, jurassic_park, dr_alan_grant).
+actedIn(laura_dern, jurassic_park, dr_ellie_sattler).
+actedIn(marlon_brando, the_godfather, vito_corleone).
+actedIn(al_pacino, the_godfather, michael_corleone).
+actedIn(vera_farmiga, the_conjuring, lorraine_warren).
+actedIn(patrick_wilson, the_conjuring, ed_warren).
+actedIn(taissa_farmiga, the_nun, sister_irene).
+actedIn(demian_bichir, the_nun, father_burke).
+actedIn(robin_williams, jumanji, alan_parrish).
+actedIn(kirsten_dunst, jumanji, judy_shepherd).
+actedIn(robert_downey_jr, avengers_endgame, tony_stark).
+actedIn(chris_evans, avengers_endgame, steve_rogers).
+actedIn(linda_blair, the_exorcist, regan_macneil).
+actedIn(ellen_burstyn, the_exorcist, chris_macneil).
+actedIn(jackie_chan, rush_hour, inspector_lee).
+actedIn(chris_tucker, rush_hour, detective_carter).
+actedIn(jensen_ackles, minecraft_the_movie, steve).
+actedIn(paola_nunez, minecraft_the_movie, alex).
 
-actedIn('Keanu Reeves', 'John Wick', 'John Wick').
-actedIn('Michael Nyqvist', 'John Wick', 'Viggo Tarasov').
-
-actedIn('Sam Neill', 'Jurassic Park', 'Dr. Alan Grant').
-actedIn('Laura Dern', 'Jurassic Park', 'Dr. Ellie Sattler').
-
-actedIn('Marlon Brando', 'The Godfather', 'Vito Corleone').
-actedIn('Al Pacino', 'The Godfather', 'Michael Corleone').
-
-actedIn('Vera Farmiga', 'The Conjuring', 'Lorraine Warren').
-actedIn('Patrick Wilson', 'The Conjuring', 'Ed Warren').
-
-actedIn('Taissa Farmiga', 'The Nun', 'Sister Irene').
-actedIn('Demian Bichir', 'The Nun', 'Father Burke').
-
-actedIn('Robin Williams', 'Jumanji', 'Alan Parrish').
-actedIn('Kirsten Dunst', 'Jumanji', 'Judy Shepherd').
-
-actedIn('Robert Downey Jr.', 'Avengers: Endgame', 'Tony Stark').
-actedIn('Chris Evans', 'Avengers: Endgame', 'Steve Rogers').
-
-actedIn('Linda Blair', 'The Exorcist', 'Regan MacNeil').
-actedIn('Ellen Burstyn', 'The Exorcist', 'Chris MacNeil').
-
-actedIn('Jackie Chan', 'Rush Hour', 'Inspector Lee').
-actedIn('Chris Tucker', 'Rush Hour', 'Detective Carter').
-
-actedIn('Jensen Ackles', 'Minecraft: The Movie', 'Steve').
-actedIn('Paola Nunez', 'Minecraft: The Movie', 'Alex').
-
-% movie genre
-movieGenre('John Wick', 'action').
-movieGenre('John Wick', 'thriller').
-
-movieGenre('Jurassic Park', 'sci-fi').
-movieGenre('Jurassic Park', 'adventure').
-
-movieGenre('The Godfather', 'crime').
-movieGenre('The Godfather', 'drama').
-
-movieGenre('The Conjuring', 'horror').
-movieGenre('The Conjuring', 'thriller').
-
-movieGenre('The Nun', 'horror').
-movieGenre('The Nun', 'mystery').
-
-movieGenre('Jumanji', 'adventure').
-movieGenre('Jumanji', 'fantasy').
-
-movieGenre('Avengers: Endgame', 'action').
-movieGenre('Avengers: Endgame', 'sci-fi').
-
-movieGenre('The Exorcist', 'horror').
-movieGenre('The Exorcist', 'thriller').
-
-movieGenre('Rush Hour', 'action').
-movieGenre('Rush Hour', 'comedy').
-
-movieGenre('Minecraft: The Movie', 'adventure').
-movieGenre('Minecraft: The Movie', 'family').
+movieGenre(john_wick, action).
+movieGenre(john_wick, thriller).
+movieGenre(jurassic_park, scifi).
+movieGenre(jurassic_park, adventure).
+movieGenre(the_godfather, crime).
+movieGenre(the_godfather, drama).
+movieGenre(the_conjuring, horror).
+movieGenre(the_conjuring, thriller).
+movieGenre(the_nun, horror).
+movieGenre(the_nun, mystery).
+movieGenre(jumanji, adventure).
+movieGenre(jumanji, fantasy).
+movieGenre(avengers_endgame, action).
+movieGenre(avengers_endgame, scifi).
+movieGenre(the_exorcist, horror).
+movieGenre(the_exorcist, thriller).
+movieGenre(rush_hour, action).
+movieGenre(rush_hour, comedy).
+movieGenre(minecraft_the_movie, adventure).
+movieGenre(minecraft_the_movie, family).
 
 %%%%% SECTION: movie_database
 
