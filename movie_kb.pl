@@ -8,8 +8,6 @@
 
 % Put your movie KB in the section below
 
-%%%%% SECTION: movie_database
-
 releaseInfo(john_wick, 2014, 101).
 releaseInfo(jurassic_park, 1993, 127).
 releaseInfo(the_godfather, 1972, 175).
@@ -20,8 +18,6 @@ releaseInfo(avengers_endgame, 2019, 181).
 releaseInfo(the_exorcist, 1973, 122).
 releaseInfo(rush_hour, 1998, 98).
 releaseInfo(minecraft_the_movie, 2025, 105).
-releaseInfo(fury_road, 2015, 120).
-releaseInfo(dune, 2021, 155).
 
 directedBy(john_wick, chad_stahelski).
 directedBy(jurassic_park, steven_spielberg).
@@ -34,8 +30,6 @@ directedBy(avengers_endgame, joe_russo).
 directedBy(the_exorcist, william_friedkin).
 directedBy(rush_hour, brett_ratner).
 directedBy(minecraft_the_movie, joaquim_dos_santos).
-directedBy(fury_road, george_miller).
-directedBy(dune, denis_villeneuve).
 
 actedIn(keanu_reeves, john_wick, john_wick).
 actedIn(michael_nyqvist, john_wick, viggo_tarasov).
@@ -57,10 +51,6 @@ actedIn(jackie_chan, rush_hour, inspector_lee).
 actedIn(chris_tucker, rush_hour, detective_carter).
 actedIn(jensen_ackles, minecraft_the_movie, steve).
 actedIn(paola_nunez, minecraft_the_movie, alex).
-actedIn(charlize_theron, fury_road, imperator_furiosa).
-actedIn(tom_hardy, fury_road, max_rockatansky).
-actedIn(timothee_chalamet, dune, paul_atreides).
-actedIn(zendaya, dune, chani).
 
 movieGenre(john_wick, action).
 movieGenre(john_wick, thriller).
@@ -82,7 +72,6 @@ movieGenre(rush_hour, action).
 movieGenre(rush_hour, comedy).
 movieGenre(minecraft_the_movie, adventure).
 movieGenre(minecraft_the_movie, family).
-movieGenre(fury_road, action).
-movieGenre(fury_road, scifi).
-movieGenre(dune, scifi).
-movieGenre(dune, adventure).
+
+%%%%% SECTION: movie_database
+
