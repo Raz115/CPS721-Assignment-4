@@ -6,8 +6,8 @@
 %%%%% NAME:Raza Hussain Mirza
 %%%%% STUDENT ID: 501242038
 %%%%%
-%%%%% NAME:Alvin Chan
-%%%%% STUDENT ID:
+%%%%% NAME: Amitoz Banga
+%%%%% STUDENT ID: 501221947
 %%%%%
-%%%%% NAME:Amitzo Banga
-%%%%% STUDENT ID:
+%%%%% NAME: Alvin Chan
+%%%%% STUDENT ID: 501250611

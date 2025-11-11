@@ -2,9 +2,9 @@
 % If you only have 2 group members, leave the last space blank
 %
 %%%%%
-%%%%% NAME: 
-%%%%% NAME:
-%%%%% NAME:
+%%%%% NAME: Raza Hussain Mirza
+%%%%% NAME: Alvin Chan
+%%%%% NAME: Amitoz Banga
 %
 % This file contains the parser that you should edit for Q5.
 % The code below is the same as in original_parser.pl
