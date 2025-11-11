@@ -88,8 +88,8 @@ article(an).
 article(the).
 article(any).
 
-common_noun(movie, X) :- movie(X).   % this is giving actor
-common_noun(film, X) :- movie(X).    % this is giving actor
+common_noun(movie, X) :- movie(X).   
+common_noun(film, X) :- movie(X).    
 common_noun(actor, X) :- actor(X).
 common_noun(director, X) :- director(X).
 common_noun(character, X) :- character(X).
